@@ -12,25 +12,16 @@ import android.support.v7.app.AlertDialog;
     public class MyDialogFragment extends DialogFragment {
 
         public MyDialogFragment() {
-
-            // Empty constructor required for DialogFragment
-
         }
 
 
 
         public static MyDialogFragment newInstance(String title) {
-
             MyDialogFragment frag = new MyDialogFragment();
-
             Bundle args = new Bundle();
-
             args.putString("title", title);
-
             frag.setArguments(args);
-
             return frag;
-
         }
 
 

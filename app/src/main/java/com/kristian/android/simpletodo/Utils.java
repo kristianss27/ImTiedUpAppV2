@@ -1,6 +1,8 @@
 package com.kristian.android.simpletodo;
 
+import android.content.Context;
 import android.util.Log;
+import android.widget.ArrayAdapter;
 
 import org.apache.commons.io.FileUtils;
 
@@ -51,6 +53,12 @@ public class Utils{
         }
 
         return true;
+    }
+
+    public ArrayAdapter populateSpinner(Context context, int textArrayResId, int textViewResId){
+        ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,textArrayResId,textViewResId);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
+        return adapter;
     }
 
     /*

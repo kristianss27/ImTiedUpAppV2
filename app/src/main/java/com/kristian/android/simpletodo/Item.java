@@ -35,6 +35,9 @@ public class Item {
     @Property(nameInDb = "STATUS")
     private String status;
 
+    @Property(nameInDb = "PRIORITY")
+    private String priority;
+
     @Transient
     private String extra;
 
@@ -46,14 +49,15 @@ private transient DaoSession daoSession;
 @Generated(hash = 182764869)
 private transient ItemDao myDao;
 
-@Generated(hash = 708609558)
+@Generated(hash = 186736576)
 public Item(Long id, @NotNull String text, String comment, java.util.Date date,
-                String status) {
+                String status, String priority) {
         this.id = id;
         this.text = text;
         this.comment = comment;
         this.date = date;
         this.status = status;
+        this.priority = priority;
 }
 
 @Generated(hash = 1470900980)
@@ -134,6 +138,14 @@ public void update() {
                 throw new DaoException("Entity is detached from DAO context");
         }
         myDao.update(this);
+}
+
+public String getPriority() {
+        return this.priority;
+}
+
+public void setPriority(String priority) {
+        this.priority = priority;
 }
 
 /** called by internal mechanisms, do not call yourself. */

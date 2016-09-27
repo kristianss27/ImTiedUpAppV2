@@ -18,7 +18,9 @@
         <activity
             android:name=".EditItemActivity"
             android:label="@string/title_activity_edit_item"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="com.kristian.android.activities.DisplayItemActivity" />
+        <activity android:name="com.kristian.android.activities.AddItemActivity"></activity>
     </application>
 
 </manifest>

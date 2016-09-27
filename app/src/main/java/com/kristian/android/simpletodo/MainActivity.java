@@ -5,16 +5,23 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import com.kristian.android.activities.AddItemActivity;
+import com.kristian.android.activities.DisplayItemActivity;
+
 import org.greenrobot.greendao.query.Query;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
@@ -32,12 +39,30 @@ public class MainActivity extends AppCompatActivity {
     private DaoMaster daoMaster;
     private DaoSession daoSession;
     private ItemDao itemDao;
+    private Item item;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if(getIntent().getStringExtra("itemText")!=null){
+            item = new Item();
+            String itemText = getIntent().getStringExtra("itemText");
+            String itemComment = getIntent().getStringExtra("itemComment");
+            String itemDate = getIntent().getStringExtra("date");
+            String priority = getIntent().getStringExtra("priority");
+            String status = getIntent().getStringExtra("status");
+            item.setText(itemText);
+            item.setComment(itemComment);
+            Date date = Calendar.getInstance().getTime();
+            item.setDate(date);
+            item.setPriority(priority);
+            item.setStatus(status);
+        }
+
         setContentView(R.layout.activity_main);
+        Toolbar toolBar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(toolBar);
 
         //showAlertDialog();
         setUpDataBase();
@@ -46,13 +71,36 @@ public class MainActivity extends AppCompatActivity {
         setupListViewListener();
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        menu.removeItem(R.id.add_item);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.add_item:
+                goToAddItemLayout();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
     public void setUpDataBase(){
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"simple-todo-db",null);
+        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"im-tiedup-db",null);
         Log.d("KRISTIAN DATABASES", helper.getDatabaseName());
         System.out.println("KRISTIAN DB: "+ helper.getDatabaseName());
         daoMaster = new DaoMaster(helper.getWritableDatabase());
         daoSession = daoMaster.newSession();
         itemDao = daoSession.getItemDao();
+        if(item !=null ){
+            itemDao.insert(item);
+        }
     }
 
     public void setupListView(String file){
@@ -113,10 +161,9 @@ public class MainActivity extends AppCompatActivity {
     public void onAddItem(View v) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
-        Item item = new Item(null,itemText,"test",new Date(),"A");
+        Item item = new Item(null,itemText,"test",new Date(),"A","HIGH");
         itemDao.insert(item);
         Log.d("MainActiviy", "Inserted new item, ID: " + item.getId());
-        Item itemResult = new Item(item.getId(),itemText,"test",new Date(),"A");
         itemAdapter.add(item);
         etNewItem.setText("");
         //Toast.makeText(this, "Value Added!", Toast.LENGTH_LONG);
@@ -142,12 +189,16 @@ public class MainActivity extends AppCompatActivity {
                                     int position,
                                     long id) {
 
-                Intent intent = new Intent(MainActivity.this, EditItemActivity.class);
+                Intent intent = new Intent(MainActivity.this, DisplayItemActivity.class);
                 Item item = arrayItem.get(position);
                 if(item != null){
                     Log.d("CURRENT ITEM","Posicion:"+position+" Id:"+item.getId());
                     intent.putExtra("itemPosition", String.valueOf(position));
                     intent.putExtra("itemValue", item.getText());
+                    intent.putExtra("itemComment", item.getComment());
+                    intent.putExtra("itemDate", item.getDate().toString());
+                    intent.putExtra("itemStatus", item.getStatus());
+                    intent.putExtra("itemPriority", item.getPriority());
                     intent.putExtra("code", REQUEST_CODE);
                     startActivityForResult(intent, REQUEST_CODE);
                 }
@@ -214,6 +265,15 @@ public class MainActivity extends AppCompatActivity {
 
         }
     }
+
+    public void goToAddItemLayout(){
+        daoMaster.getDatabase().close();
+        Intent intent = new Intent();
+        intent.setClass(this, AddItemActivity.class);
+        startActivity(intent);
+
+    }
+
 
     public void showAlertDialog() {
 

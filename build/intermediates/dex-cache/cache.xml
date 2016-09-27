@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="/Users/kristianss27/.gradle/caches/modules-2/files-2.1/org.apache.commons/commons-io/1.3.2/b6dde38349ba9bb5e6ea6320531eae969985dae5/commons-io-1.3.2.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="b6dde38349ba9bb5e6ea6320531eae969985dae5">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/commons-io-1.3.2_4abf2764c059c6e4f48b84b847e62893bc89735e/classes.dex" />
+    </item>
+    <item
+        jar="/Users/kristianss27/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.1.1/support-annotations-23.1.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="8d680ba5a623724d1fb0e81c36a790f023a6cede">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.1.1_262d900046e60db4727ecb58927813ab38667611/classes.dex" />
+    </item>
+    <item
+        jar="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/libs/internal_impl-23.1.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="a4de9c81ae239414e1ed0f86441b02abaf29bca9">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.1.1_774b0fb21efbc24f1feb3856cf34e285be310b86/classes.dex" />
+    </item>
+    <item
+        jar="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="09c5e804bc67fc0580360043dff067df574a60d4">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.1.1_045b76629c339740c4ad2b0ef0e06e8ad6a26f2c/classes.dex" />
+    </item>
+    <item
+        jar="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="67ea20f90f1e5cd241d6664b6dc0595149a303f1">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_21969f82aaec3ab96eab70b051202e977727aefd/classes.dex" />
+    </item>
+    <item
+        jar="/Users/kristianss27/.gradle/caches/modules-2/files-2.1/org.greenrobot/greendao/3.1.1/549de9d8793d3c713690fcb3f5561955c94ea3a0/greendao-3.1.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="549de9d8793d3c713690fcb3f5561955c94ea3a0">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/greendao-3.1.1_c6f69137c86739ce0ad232480048030374fd5a69/classes.dex" />
+    </item>
+    <item
+        jar="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="e54e32825f80d33ebf09ce9a934f55ce6d8c8879">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_5b8faa98277f59049f9880e3f7caf5d8fb4342a3/classes.dex" />
+    </item>
+    <item
+        jar="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="5c5699834e9722f1c288fea2de82725d078ba127">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.1.1_548bacac5dd053e93fe612c668d991f141ec52dd/classes.dex" />
+    </item>
+    <item
+        jar="/Users/kristianss27/.gradle/caches/modules-2/files-2.1/org.greenrobot/greendao-api/3.1.1/f95718a93bba2b50422d31bb695207af8a3b54da/greendao-api-3.1.1.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="f95718a93bba2b50422d31bb695207af8a3b54da">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/greendao-api-3.1.1_851e99dbf3777a8c558a7433c2ec857bdb1a9538/classes.dex" />
+    </item>
+    <item
+        jar="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/exploded-aar/com.android.support/design/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="379471b2bd17d9737c050345c08e8c7d16589784">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.1.1_99d309f871fbd3caa4f6b02dace22d36d119a91a/classes.dex" />
+    </item>
+    <item
+        jar="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.1.1/jars/classes.jar"
+        jumboMode="true"
+        revision="23.0.2"
+        sha1="6cbc7773921fcfedbe55657578f0cbfe614778dc">
+        <dex dex="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.1.1_3c35a4d26d0aea63277abbd58a0011b80aa3fd9f/classes.dex" />
+    </item>
+
+</items>

@@ -1,6 +1,29 @@
 <resources>
-    <string name="app_name">Im Tied Up! - Things To Do</string>
+    <string name="app_name">Im Tied Up!</string>
     <string name="title_activity_edit_item">Edit Item</string>
     <string name="user">Unknowed User</string>
     <string name="new_user">New User</string>
+    <string name="t_item_text_title">Task:</string>
+    <string name="t_item_text"></string>
+    <string name="t_item_comment_title">Note:</string>
+    <string name="t_item_comment"></string>
+    <string name="t_item_date_title">Date:</string>
+    <string name="t_item_date"></string>
+    <string name="t_item_priority_title">Priority:</string>
+    <string name="t_item_priority">Priority</string>
+    <string name="t_item_status_title">Status:</string>
+    <string name="t_item_status"></string>
+    <string name="_item_status"></string>
+    <string name="add_item_success">ITEM ADDED!</string>
+    <string name="add_item_fail">ERROR!</string>
+    <string-array name="priorities">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
+    <string-array name="status">
+        <item>To Do</item>
+        <item>Done</item>
+        <item>Hold on</item>
+    </string-array>
 </resources>
