@@ -8,6 +8,14 @@
         "source": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_seekbar_thumb_material.xml"
     },
     {
+        "merged": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/res/merged/debug/drawable/save.png",
+        "source": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/src/main/res/drawable/save.png"
+    },
+    {
+        "merged": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/res/merged/debug/drawable/trash.png",
+        "source": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/src/main/res/drawable/trash.png"
+    },
+    {
         "merged": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/res/merged/debug/drawable/abc_btn_radio_material.xml",
         "source": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_btn_radio_material.xml"
     },
@@ -26,6 +34,14 @@
     {
         "merged": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/res/merged/debug/drawable/abc_btn_check_material.xml",
         "source": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.1.1/res/drawable/abc_btn_check_material.xml"
+    },
+    {
+        "merged": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/res/merged/debug/drawable/high_priority.png",
+        "source": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/src/main/res/drawable/high_priority.png"
+    },
+    {
+        "merged": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/res/merged/debug/drawable/edit.png",
+        "source": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/src/main/res/drawable/edit.png"
     },
     {
         "merged": "/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/res/merged/debug/drawable/abc_seekbar_track_material.xml",

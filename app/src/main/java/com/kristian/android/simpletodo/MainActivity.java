@@ -1,6 +1,7 @@
 package com.kristian.android.simpletodo;
 
 import android.content.Intent;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentManager;
@@ -20,13 +21,16 @@ import com.kristian.android.activities.DisplayItemActivity;
 
 import org.greenrobot.greendao.query.Query;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MyDialogFragment.MyDialogListener{
     private ArrayList<String> items;
     private ArrayAdapter<String> itemsAdapter;
     private ArrayList<Item> arrayItem;
@@ -40,43 +44,38 @@ public class MainActivity extends AppCompatActivity {
     private DaoSession daoSession;
     private ItemDao itemDao;
     private Item item;
-
+    private DaoMaster.DevOpenHelper helper;
+    private SQLiteDatabase dataBase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if(getIntent().getStringExtra("itemText")!=null){
-            item = new Item();
-            String itemText = getIntent().getStringExtra("itemText");
-            String itemComment = getIntent().getStringExtra("itemComment");
-            String itemDate = getIntent().getStringExtra("date");
-            String priority = getIntent().getStringExtra("priority");
-            String status = getIntent().getStringExtra("status");
-            item.setText(itemText);
-            item.setComment(itemComment);
-            Date date = Calendar.getInstance().getTime();
-            item.setDate(date);
-            item.setPriority(priority);
-            item.setStatus(status);
-        }
-
         setContentView(R.layout.activity_main);
         Toolbar toolBar = (Toolbar) findViewById(R.id.my_toolbar);
         setSupportActionBar(toolBar);
-
-        //showAlertDialog();
-        setUpDataBase();
         setupListView("db");
         //We setUp our List View Listener
         setupListViewListener();
+        if(getIntent().getStringExtra("itemPosition")!=null){
+            String position = getIntent().getStringExtra("itemPosition");
+            item = (Item) arrayItem.get(Integer.parseInt(position));
+            deleteItem();
+        }
     }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        menu.removeItem(R.id.add_item);
         getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        menu.findItem(R.id.delete_item).setVisible(false);
+        menu.findItem(R.id.edit_item).setVisible(false);
+        menu.findItem(R.id.save_item).setVisible(false);
+        return super.onPrepareOptionsMenu(menu);
     }
 
     @Override
@@ -88,18 +87,6 @@ public class MainActivity extends AppCompatActivity {
 
             default:
                 return super.onOptionsItemSelected(item);
-        }
-    }
-
-    public void setUpDataBase(){
-        DaoMaster.DevOpenHelper helper = new DaoMaster.DevOpenHelper(this,"im-tiedup-db",null);
-        Log.d("KRISTIAN DATABASES", helper.getDatabaseName());
-        System.out.println("KRISTIAN DB: "+ helper.getDatabaseName());
-        daoMaster = new DaoMaster(helper.getWritableDatabase());
-        daoSession = daoMaster.newSession();
-        itemDao = daoSession.getItemDao();
-        if(item !=null ){
-            itemDao.insert(item);
         }
     }
 
@@ -127,15 +114,15 @@ public class MainActivity extends AppCompatActivity {
         if(way.equalsIgnoreCase("db")){
             items = new ArrayList<String>();
             arrayItem = new ArrayList<Item>();
+            openDataBase();
             Query<Item> query = itemDao.queryBuilder().build();
             List<Item> list = query.list();
+            closeDataBase();
             list.size();
             Log.d("MainActiviy", "Item list, size: " + list.size());
             Iterator<Item> iterator = list.iterator();
             while(iterator.hasNext()){
                 Item item = iterator.next();
-                Log.d("MainActiviy", "Item id: " + item.getId().toString());
-                Log.d("MainActiviy", "Item text: " + item.getText());
                 String id = String.valueOf(item.getId());
                 String text = item.getText();
                 arrayItem.add(item);
@@ -161,12 +148,23 @@ public class MainActivity extends AppCompatActivity {
     public void onAddItem(View v) {
         EditText etNewItem = (EditText) findViewById(R.id.etNewItem);
         String itemText = etNewItem.getText().toString();
-        Item item = new Item(null,itemText,"test",new Date(),"A","HIGH");
+        Calendar date = Calendar.getInstance();
+        Item item = new Item(null,itemText,"",date.getTime(),"TO DO","HIGH");
+        openDataBase();
         itemDao.insert(item);
         Log.d("MainActiviy", "Inserted new item, ID: " + item.getId());
+        closeDataBase();
         itemAdapter.add(item);
         etNewItem.setText("");
         //Toast.makeText(this, "Value Added!", Toast.LENGTH_LONG);
+    }
+
+    public void deleteItem(){
+        openDataBase();
+        itemDao.delete(item);
+        closeDataBase();
+        itemAdapter.remove(item);
+        updateListView();
     }
 
 
@@ -175,10 +173,8 @@ public class MainActivity extends AppCompatActivity {
                 new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                        Item item = (Item) parent.getItemAtPosition(position);
-                        itemDao.delete(item);
-                        itemAdapter.remove(item);
-                        updateListView();
+                        item = (Item) arrayItem.get(position);
+                        showAlertDialog();
                         return true;
                     }
                 });
@@ -190,17 +186,20 @@ public class MainActivity extends AppCompatActivity {
                                     long id) {
 
                 Intent intent = new Intent(MainActivity.this, DisplayItemActivity.class);
+                //intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                 Item item = arrayItem.get(position);
                 if(item != null){
                     Log.d("CURRENT ITEM","Posicion:"+position+" Id:"+item.getId());
                     intent.putExtra("itemPosition", String.valueOf(position));
+                    intent.putExtra("itemId", String.valueOf(item.getId()));
                     intent.putExtra("itemValue", item.getText());
                     intent.putExtra("itemComment", item.getComment());
                     intent.putExtra("itemDate", item.getDate().toString());
                     intent.putExtra("itemStatus", item.getStatus());
                     intent.putExtra("itemPriority", item.getPriority());
                     intent.putExtra("code", REQUEST_CODE);
-                    startActivityForResult(intent, REQUEST_CODE);
+                    //startActivityForResult(intent, REQUEST_CODE);
+                    startActivity(intent);
                 }
                 else{
                     Log.e("ITEM IS NULL","Item is null");
@@ -217,8 +216,6 @@ public class MainActivity extends AppCompatActivity {
                 new AdapterView.OnItemLongClickListener() {
                     @Override
                     public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                        items.remove(position);
-                        updateListView();
                         return true;
                     }
                 });
@@ -253,37 +250,87 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == RESULT_OK && requestCode == REQUEST_CODE){
-            String newValue = data.getExtras().getString("newValue");
-            String itemPosition = data.getExtras().getString("itemPosition");
-            Item item = arrayItem.get(Integer.parseInt(itemPosition));
-            item.setText(newValue);
-            int code = data.getExtras().getInt("code",0);
-            arrayItem.set(Integer.parseInt(itemPosition),item);
-            updateListView();
-            itemDao.update(item);
+        Date date = new Date();
 
+        if(resultCode == RESULT_OK && requestCode == REQUEST_CODE){
+            //Add Item
+            if(data.getStringExtra("itemText")!=null){
+                item = new Item();
+
+                String itemText = data.getStringExtra("itemText");
+                String itemComment = data.getStringExtra("itemComment");
+                String itemDate = data.getStringExtra("date");
+                SimpleDateFormat dateFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.US);
+                Calendar calendar = Calendar.getInstance();
+
+                try {
+                    date = dateFormat.parse(itemDate);
+                    calendar.setTime(date);
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                }
+
+                String priority = data.getStringExtra("priority");
+                String status = data.getStringExtra("status");
+                item.setText(itemText);
+                item.setComment(itemComment);
+                item.setDate(date);
+                item.setPriority(priority);
+                item.setStatus(status);
+                openDataBase();
+                itemDao.insert(item);
+                closeDataBase();
+            }
+            setupListView("db");
+            //We setUp our List View Listener
+            setupListViewListener();
+            updateListView();
         }
     }
 
     public void goToAddItemLayout(){
-        daoMaster.getDatabase().close();
-        Intent intent = new Intent();
-        intent.setClass(this, AddItemActivity.class);
-        startActivity(intent);
-
+        Intent intent = new Intent(this, AddItemActivity.class);
+        intent.putExtra("code", REQUEST_CODE);
+        startActivityForResult(intent,REQUEST_CODE);
     }
-
 
     public void showAlertDialog() {
-
         FragmentManager fm = getSupportFragmentManager();
-
-        DialogFragment alertDialog = MyDialogFragment.newInstance("ToDoList App");
-
+        DialogFragment alertDialog = MyDialogFragment.newInstance("Delete Task",getResources().getString(R.string.delete_message));
         alertDialog.show(fm, "fragment_alert");
-
     }
 
+    @Override
+    public void onDialogPositiveClick(DialogFragment dialog){ deleteItem();}
+    @Override
+    public void onDialogNegativeClick(DialogFragment dialog){
+        dialog.dismiss();
+    }
+
+    public void openDataBase(){
+        helper = new DaoMaster.DevOpenHelper(this,"im-tiedup-db",null);
+        if(dataBase == null){
+            dataBase = helper.getWritableDatabase();
+            Log.e("DATA BASE: ", helper.getDatabaseName());
+        }
+        else{
+            if(!dataBase.isOpen()){
+                dataBase = helper.getWritableDatabase();
+                Log.e("DATA BASE","Is open: "+dataBase.isOpen());
+            }
+            else{
+                Log.e("DATA BASE","Is open: "+dataBase.isOpen());
+            }
+
+        }
+        daoMaster = new DaoMaster(dataBase);
+        daoSession = daoMaster.newSession();
+        itemDao = daoSession.getItemDao();
+    }
+
+    public void closeDataBase() {
+        daoSession.clear();
+        dataBase.close();
+    }
 
 }

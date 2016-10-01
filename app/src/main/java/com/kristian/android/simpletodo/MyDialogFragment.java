@@ -1,5 +1,6 @@
 package com.kristian.android.simpletodo;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -11,15 +12,33 @@ import android.support.v7.app.AlertDialog;
  */
     public class MyDialogFragment extends DialogFragment {
 
-        public MyDialogFragment() {
+    public interface MyDialogListener{
+        public void onDialogPositiveClick(DialogFragment dialog);
+        public void onDialogNegativeClick(DialogFragment dialog);
+    }
+
+    MyDialogListener myDialogListener;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        try {
+            myDialogListener =  (MyDialogListener) activity;
+        }catch (ClassCastException e) {
+            // The activity doesn't implement the interface, throw exception
+            throw new ClassCastException(activity.toString()
+                    + " must implement MyDialogListener");
+        }
+    }
+
+    public MyDialogFragment() {
         }
 
-
-
-        public static MyDialogFragment newInstance(String title) {
+        public static MyDialogFragment newInstance(String title,String message) {
             MyDialogFragment frag = new MyDialogFragment();
             Bundle args = new Bundle();
             args.putString("title", title);
+            args.putString("message",message);
             frag.setArguments(args);
             return frag;
         }
@@ -31,21 +50,20 @@ import android.support.v7.app.AlertDialog;
         public Dialog onCreateDialog(Bundle savedInstanceState) {
 
             String title = getArguments().getString("title");
+            String message = getArguments().getString("message");
 
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
 
             alertDialogBuilder.setTitle(title);
 
-            alertDialogBuilder.setMessage("Do you want to storage your data in a DataBase?");
+            alertDialogBuilder.setMessage(message);
 
             alertDialogBuilder.setPositiveButton("OK",  new DialogInterface.OnClickListener() {
 
                 @Override
 
                 public void onClick(DialogInterface dialog, int which) {
-
-                    // on success
-
+                    myDialogListener.onDialogPositiveClick(MyDialogFragment.this);
                 }
 
             });
@@ -55,9 +73,8 @@ import android.support.v7.app.AlertDialog;
                 @Override
 
                 public void onClick(DialogInterface dialog, int which) {
-
-                    dialog.dismiss();
-
+                    myDialogListener.onDialogNegativeClick(MyDialogFragment.this);
+                    //dialog.dismiss();
                 }
 
             });

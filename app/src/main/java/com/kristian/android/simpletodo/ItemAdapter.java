@@ -27,10 +27,27 @@ public class ItemAdapter extends ArrayAdapter<Item> {
         }
         // Lookup view for data population
         TextView textView = (TextView) convertView.findViewById(R.id.list_todo_textview);
+        TextView priorityTextView = (TextView) convertView.findViewById(R.id.list_todo_priority);
         //TextView tvHome = (TextView) convertView.findViewById(R.id.tvHome);
 
         // Populate the data into the template view using the data object
         textView.setText(item.getText());
+        if(item.getPriority().equalsIgnoreCase(getContext().getResources().getString(R.string.priority_1))){
+            priorityTextView.setText(R.string.priority_1);
+            priorityTextView.setTextColor(getContext().getResources().getColor(R.color.priority_1_color));
+        }
+        else if(item.getPriority().equalsIgnoreCase(getContext().getResources().getString(R.string.priority_2))){
+            priorityTextView.setText(R.string.priority_2);
+            priorityTextView.setTextColor(getContext().getResources().getColor(R.color.priority_2_color));
+        }
+        else if(item.getPriority().equalsIgnoreCase(getContext().getResources().getString(R.string.priority_3))){
+            priorityTextView.setText(R.string.priority_3);
+            priorityTextView.setTextColor(getContext().getResources().getColor(R.color.priority_3_color));
+        }
+        else{
+            priorityTextView.setText(R.string.priority_1);
+            priorityTextView.setTextColor(getContext().getResources().getColor(R.color.priority_3_color));
+        }
         //textView.setText(item.getText());
 
 

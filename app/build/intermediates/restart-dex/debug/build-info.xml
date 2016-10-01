@@ -4,30 +4,44 @@
     api-level="23"
     density="xxhdpi"
     format="7"
-    timestamp="1474949584766075000"
+    timestamp="1475296454400707000"
     token="200497870456627729" >
 
     <task
         name="javac"
-        duration="3636" />
+        duration="0" />
     <task
         name="instant-run-dex"
         duration="0" />
     <task
         name="instant-run-transform"
-        duration="1238" />
+        duration="0" />
     <task
         name="verifier"
-        duration="50" />
+        duration="0" />
 
-    <artifact
-        location="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/outputs/apk/app-debug.apk"
-        type="MAIN" />
-
-    <build timestamp="1474949584766075000" >
+    <build timestamp="1475294592059102000" >
         <artifact
             location="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/outputs/apk/app-debug.apk"
             type="MAIN" />
     </build>
+    <build
+        timestamp="1475295256665456000"
+        verifier="R_CLASS_CHANGE" >
+        <artifact
+            location="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/res/resources-debug.ap_"
+            type="RESOURCES" />
+        <artifact
+            location="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/transforms/dex/debug/folders/1000/5/slice_7/classes.dex"
+            type="DEX" />
+    </build>
+    <build
+        timestamp="1475296326695018000"
+        verifier="COMPATIBLE" >
+        <artifact
+            location="/Users/kristianss27/Desktop/AndroidStudioProjects/SimpleTodo/app/build/intermediates/builds/debug/1475296326695018000/classes.dex"
+            type="RELOAD_DEX" />
+    </build>
+    <build timestamp="1475296454400707000" />
 
 </instant-run>

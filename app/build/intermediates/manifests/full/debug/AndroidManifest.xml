@@ -21,12 +21,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name="com.kristian.android.simpletodo.EditItemActivity"
-            android:label="@string/title_activity_edit_item"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name="com.kristian.android.activities.DisplayItemActivity" />
+        <activity android:name="com.kristian.android.simpletodo.EditItemActivity" />
         <activity android:name="com.kristian.android.activities.AddItemActivity" />
+        <activity android:name="com.kristian.android.activities.DisplayItemActivity" />
     </application>
 
 </manifest>

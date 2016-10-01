@@ -9,6 +9,7 @@ import org.apache.commons.io.FileUtils;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 /**
  * Created by kristianss27 on 8/5/16.
@@ -59,6 +60,17 @@ public class Utils{
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(context,textArrayResId,textViewResId);
         adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item);
         return adapter;
+    }
+
+    public String getFormatDate(Calendar calendar,boolean sumMonth){
+        int day = calendar.get(Calendar.DAY_OF_MONTH);
+        int month = calendar.get(Calendar.MONTH);
+        if(sumMonth){
+            month++;
+        }
+        int year = calendar.get(Calendar.YEAR);
+        String date = month+"/"+day+"/"+year;
+        return date;
     }
 
     /*

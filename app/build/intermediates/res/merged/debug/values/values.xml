@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="priorities">
-        <item>High</item>
-        <item>Medium</item>
-        <item>Low</item>
+        <item>HIGH</item>
+        <item>MEDIUM</item>
+        <item>LOW</item>
     </string-array>
     <string-array name="status">
-        <item>To Do</item>
-        <item>Done</item>
-        <item>Hold on</item>
+        <item>TO DO</item>
+        <item>DONE</item>
+        <item>HOLD ON</item>
     </string-array>
     <attr format="reference" name="drawerArrowStyle"/>
     <attr format="dimension" name="height"/>
@@ -82,6 +82,9 @@
     <color name="primary_text_default_material_light">#de000000</color>
     <color name="primary_text_disabled_material_dark">#4Dffffff</color>
     <color name="primary_text_disabled_material_light">#39000000</color>
+    <color name="priority_1_color">#f44336</color>
+    <color name="priority_2_color">#ff9800</color>
+    <color name="priority_3_color">#64dd17</color>
     <color name="ripple_material_dark">#33ffffff</color>
     <color name="ripple_material_light">#1f000000</color>
     <color name="secondary_text_default_material_dark">#b3ffffff</color>
@@ -281,22 +284,28 @@
     <string name="abc_shareactionprovider_share_with_application">Share with %s</string>
     <string name="abc_toolbar_collapse_description">Collapse</string>
     <string name="add_item_fail">ERROR!</string>
-    <string name="add_item_success">ITEM ADDED!</string>
+    <string name="add_item_success">TASK ADDED!</string>
     <string name="app_name">Im Tied Up!</string>
     <string name="appbar_scrolling_view_behavior" translatable="false">android.support.design.widget.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="back">Go back</string>
     <string name="character_counter_pattern" translatable="false">%1$d / %2$d</string>
+    <string name="delete_message">Do you want to get rid of this task?</string>
+    <string name="edit_item_success">TASK EDITED SUCCESSFUL!</string>
     <string name="new_user">New User</string>
+    <string name="priority_1">HIGH</string>
+    <string name="priority_2">MEDIUM</string>
+    <string name="priority_3">LOW</string>
     <string name="status_bar_notification_info_overflow">999+</string>
     <string name="t_item_comment"/>
-    <string name="t_item_comment_title">Note:</string>
+    <string name="t_item_comment_title">Note</string>
     <string name="t_item_date"/>
-    <string name="t_item_date_title">Date:</string>
+    <string name="t_item_date_title">Date</string>
     <string name="t_item_priority">Priority</string>
-    <string name="t_item_priority_title">Priority:</string>
+    <string name="t_item_priority_title">Priority</string>
     <string name="t_item_status"/>
-    <string name="t_item_status_title">Status:</string>
+    <string name="t_item_status_title">Status</string>
     <string name="t_item_text"/>
-    <string name="t_item_text_title">Task:</string>
+    <string name="t_item_text_title">Task</string>
     <string name="title_activity_edit_item">Edit Item</string>
     <string name="user">Unknowed User</string>
     <style name="ActionBar" parent="Widget.AppCompat.ActionBar">
@@ -310,7 +319,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
-        <item name="colorAccent">@color/colorAccent</item>
+        <item name="colorAccent">@android:color/black</item>
     </style>
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.NoActionBar">
@@ -1262,6 +1271,21 @@
         <item name="tabBackground">?attr/selectableItemBackground</item>
         <item name="tabTextAppearance">@style/TextAppearance.Design.Tab</item>
         <item name="tabSelectedTextColor">?android:textColorPrimary</item>
+    </style>
+    <style name="FullWidthEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:background">@null</item>
+        <item name="android:textSize">22sp</item>
+        <item name="colorControlNormal">#AB47BC</item>
+        <item name="colorControlActivated">#ff5722</item>
+        <item name="colorControlHighlight">#f44336</item>
+    </style>
+    <style name="Label">
+        <item name="android:textSize">22sp</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:textColor">@android:color/black</item>
+        <item name="android:textStyle">bold</item>
     </style>
     <style name="Platform.AppCompat" parent="android:Theme">
         <item name="android:windowNoTitle">true</item>
