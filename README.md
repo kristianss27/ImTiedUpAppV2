@@ -20,13 +20,14 @@ The following optional features will be implemented soon:
     Using the ORM GreenDao
 * [Implemented] Improve style of the todo items in the list [using a custom adapter](http://guides.codepath.com/android/Using-an-ArrayAdapter-with-ListView)
 * [Implemented] Add support for completion due dates for todo items (and display within listview item)
-* [Implemented] Use a [DialogFragment](http://guides.codepath.com/android/Using-DialogFragment) instead of new Activity for editing items
+* [Implemented] Use a [DialogFragment](http://guides.codepath.com/android/Using-DialogFragment) for different activies
 * [Implemented] Add support for selecting the priority of each todo item (and display in listview item)
-
-
-The following **additional** features will be implemented soon:
-
-* [ ] List anything else that you can get done to improve the app functionality!
+* [Implemented] Proper Navigation between Activities, Task and Back Stack
+* [Implemented] Localizing with Resource
+* [Implemented] Applied Activity Launch Mode
+* [Implemented] Styling in components
+* [Implemented] Organizing your Source Files [Supporting by] (http://guides.codepath.com/android/Organizing-your-Source-Files)
+* and more...
 
 ## Video Walkthrough 
 
