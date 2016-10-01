@@ -1,0 +1,38 @@
+<resources>
+    <string name="app_name">Organizado!</string>
+    <string name="title_activity_edit_item">Editar item</string>
+    <string name="user">Usuario desconocido</string>
+    <string name="new_user">Nuevo usuario</string>
+    <string name="t_item_text_title">Tarea</string>
+    <string name="t_item_text"></string>
+    <string name="t_item_comment_title">Notas</string>
+    <string name="t_item_comment"></string>
+    <string name="t_item_date_title">Fecha</string>
+    <string name="t_item_date"></string>
+    <string name="t_item_priority_title">Prioridad</string>
+    <string name="t_item_priority">Prioridad</string>
+    <string name="t_item_status_title">Estatus</string>
+    <string name="t_item_status"></string>
+    <string name="_item_status"></string>
+    <string name="add_item_success">TAREA AGREGADA!</string>
+    <string name="add_item_fail">ERROR!</string>
+    <string name="delete_message">Deseas eliminar esta tarea?</string>
+    <string name="back">Go back</string>
+    <string name="edit_item_success">TAREA EDITADA EXITOSAMENTE!</string>
+    <string name="priority_1">HIGH</string>
+    <string name="priority_2">MEDIUM</string>
+    <string name="priority_3">LOW</string>
+    <color name="priority_1_color">#f44336</color>
+    <color name="priority_2_color">#ff9800</color>
+    <color name="priority_3_color">#64dd17</color>
+    <string-array name="priorities">
+        <item>HIGH</item>
+        <item>MEDIUM</item>
+        <item>LOW</item>
+    </string-array>
+    <string-array name="status">
+        <item>TO DO</item>
+        <item>DONE</item>
+        <item>HOLD ON</item>
+    </string-array>
+</resources>
